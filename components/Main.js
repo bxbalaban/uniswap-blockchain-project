@@ -43,7 +43,7 @@ const style = {
                                 <Image src ={ethLogo} alt="eth logo" height={20} width={20}></Image>
                             </div>
                             <div className={style.currencySelectorTicker}>ETH</div>
-                            <AiOutlineDown class={style.currencySelectorArrow}></AiOutlineDown>
+                            <AiOutlineDown className={style.currencySelectorArrow}></AiOutlineDown>
                         </div>
                     </div>
                 </div>
