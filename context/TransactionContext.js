@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { contractABI, contractAddress } from '../lib/constants'
 import { ethers } from 'ethers'
-import {client} from '../lib/sanityClient'
+import { client } from '../lib/sanityClient'
 
 export const TransactionContext = React.createContext()
 
@@ -33,6 +33,23 @@ export const TransactionProvider = ({ children }) => {
   useEffect(() => {
     checkIsConnected()
   }, [])//it will have no dependencies
+
+  // Create user profile in sanity if it doesn't exists
+  useEffect(() => {
+    if (!currentAccount)return 
+    ;(async()=>{
+      const userDoc={
+        _type:'users',
+        _id: currentAccount,
+        userName: 'Unnamed',
+        address: currentAccount,
+      }
+      await client.createIfNotExists(userDoc)
+
+    })()
+
+
+  }, [currentAccount])
 
   const connectWallet = async (metamask = eth) => {
     try {
@@ -69,7 +86,7 @@ export const TransactionProvider = ({ children }) => {
     try {
       if (!metamask) return alert('Please install metamask ')
       const { addressTo, amount } = formData
-        const transactionContract = getEthereumContract()
+      const transactionContract = getEthereumContract()
 
       const parsedAmount = ethers.utils.parseEther(amount)
 
