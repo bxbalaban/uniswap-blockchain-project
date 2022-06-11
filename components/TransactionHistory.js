@@ -57,7 +57,7 @@ const TransactionHistory = () => {
                   dateStyle: 'long',
                 })}
               </div>
-              <div className={style.etherscanLink}>
+              {/* <div className={style.etherscanLink}>
                 <a
                   href={`https://rinkeby.etherscan.io/tx/${transaction.txHash}`}
                   target='_blank'
@@ -67,7 +67,7 @@ const TransactionHistory = () => {
                   View on Etherscan
                   <FiArrowUpRight />
                 </a>
-              </div>
+              </div> */}
             </div>
           ))}
       </div>
