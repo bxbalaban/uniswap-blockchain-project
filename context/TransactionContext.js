@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { contractABI, contractAddress } from '../lib/constants'
 import { ethers } from 'ethers'
 import { client } from '../lib/sanityClient'
+import { RiRouterLine } from 'react-icons/ri'
+import { useRouter } from 'next/router'
 
 export const TransactionContext = React.createContext()
 
@@ -30,23 +32,25 @@ export const TransactionProvider = ({ children }) => {
     amount: '',
   })
 
+  const router=useRouter()
+
   useEffect(() => {
     checkIsConnected()
   }, [])//it will have no dependencies
 
   // Create user profile in sanity if it doesn't exists
   useEffect(() => {
-    if (!currentAccount)return 
-    ;(async()=>{
-      const userDoc={
-        _type:'users',
-        _id: currentAccount,
-        userName: 'Unnamed',
-        address: currentAccount,
-      }
-      await client.createIfNotExists(userDoc)
+    if (!currentAccount) return
+      ; (async () => {
+        const userDoc = {
+          _type: 'users',
+          _id: currentAccount,
+          userName: 'Unnamed',
+          address: currentAccount,
+        }
+        await client.createIfNotExists(userDoc)
 
-    })()
+      })()
 
 
   }, [currentAccount])
@@ -166,6 +170,18 @@ export const TransactionProvider = ({ children }) => {
 
   }
 
+  //Trigger loading modal
+
+  useEffect(() => {
+    if (isLoading) {
+      router.push(`/?loading=${currentAccount}`)
+    }
+    else {
+      router.push(`/`)
+    }
+
+  }, [isLoading])
+
   return (
     <TransactionContext.Provider
       value={{
@@ -174,6 +190,7 @@ export const TransactionProvider = ({ children }) => {
         sendTransaction,
         handleChange,
         formData,
+        isLoading,
       }}
     >
       {children}
