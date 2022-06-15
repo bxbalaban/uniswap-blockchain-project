@@ -80,9 +80,9 @@ const Header =()=>{
                          <Image src={ethLogo} alt="eth logo" height={20} width={20}></Image>
                     </div>
                     <p>Ethereum</p>
-                    <div className={style.buttonIconContainer}>
+                    {/* <div className={style.buttonIconContainer}>
                         <AiOutlineDown></AiOutlineDown>
-                    </div>
+                    </div> */}
                 </div>
 
                 {currentAccount ? (
@@ -100,11 +100,11 @@ const Header =()=>{
                 )}
 
                 
-                <div className={` ${style.button} ${style.buttonPadding}`}>
+                {/* <div className={` ${style.button} ${style.buttonPadding}`}>
                     <div className={` ${style.buttonIconContainer} mx-12`}>
                          <HiOutlineDotsVertical></HiOutlineDotsVertical>
                     </div>
-                </div>
+                </div> */}
             </div>          
 
         </div>

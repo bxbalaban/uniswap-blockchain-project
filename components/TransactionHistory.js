@@ -50,7 +50,7 @@ const TransactionHistory = () => {
               </div>{' '}
               on{' '}
               <div className={style.txTimestamp}>
-                {new Date(transaction.timestamp).toLocaleString('en-US', {
+                {new Date(transaction.timestamp).toLocaleString('en-TR', {
                   timeZone: 'PST',
                   hour12: true,
                   timeStyle: 'short',

@@ -59,9 +59,9 @@ const Main = () => {
             <div className={style.content}>
                 <div className={style.formHeader}>
                     <div>Swap</div>
-                    <div>
+                    {/* <div>
                         <RiSettings3Fill></RiSettings3Fill>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={style.transferPropContainer}>
                     <input
